@@ -5,15 +5,22 @@
     justify-content: space-evenly;
     height: 300px;
     width: 200px;
+    margin: 20px;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .screen {
+    display: flex;
     border: 1px solid black;
     border-radius: 5px;
     height: 40px;
-    text-align: right;
+    justify-content: right;
     align-content: center;
     font-size: 20px;
+    background-color: bisque;
 }
 
 .row {
@@ -26,6 +33,8 @@
     height: 40px;
     width: 40px;
     font-size: 20px;
+    background-color: black;
+    color: orange;
 }
 
 #enter {
