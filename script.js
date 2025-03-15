@@ -22,8 +22,9 @@ var firstNum = "";
 var secondNum = "";
 var result = "";
 var operator = "";
-var opPressed = false;
+var opUsed = false;
 var newNum = true;
+var decUsed = false;
 
 function clearScreen(event) {
     displayElement.textContent = "";
@@ -31,15 +32,16 @@ function clearScreen(event) {
     secondNum = "";
     result = "";
     operator = "";
-    opPressed = false;
+    opUsed = false;
     newNum = true;
+    decUsed = false;
 }
 
 function displayNumber(event) {
     const numPress = document.createElement("div");
     numPress.textContent = event.target.textContent;
     displayElement.appendChild(numPress);
-    if (opPressed === false) {
+    if (opUsed === false) {
         firstNum += event.target.textContent;
         newNum = false;
     } else {
@@ -49,30 +51,40 @@ function displayNumber(event) {
 }
 
 function displayOperator(event) {
-    const opPress = document.createElement("div");
-    operator = event.target.textContent;
-    opPress.textContent = " " + operator + " ";
-    opPress.style.whiteSpace = 'pre';
-    displayElement.appendChild(opPress);
-    opPressed = true;
-    newNum = true;
+    if (opUsed === true) {
+        return;
+    } else {
+        const opPress = document.createElement("div");
+        operator = event.target.textContent;
+        opPress.textContent = " " + operator + " ";
+        opPress.style.whiteSpace = 'pre';
+        displayElement.appendChild(opPress);
+        opUsed = true;
+        newNum = true;
+        decUsed = false;
+    }
 }
 
 function displayDec(event) {
-    const decPress = document.createElement("div");
-    if (newNum === true) {
-        decPress.textContent = "0" + event.target.textContent;
+    if (decUsed === true) {
+        return;
     } else {
-        decPress.textContent = event.target.textContent;
+        const decPress = document.createElement("div");
+        if (newNum === true) {
+            decPress.textContent = "0" + event.target.textContent;
+        } else {
+            decPress.textContent = event.target.textContent;
+        }
+        displayElement.appendChild(decPress);
+        if (opUsed === false) {
+            firstNum += event.target.textContent;
+            newNum = false;
+        } else {
+            secondNum += event.target.textContent;
+            newNum = false;
+        }  
+        decUsed = true;
     }
-    displayElement.appendChild(decPress);
-    if (opPressed === false) {
-        firstNum += event.target.textContent;
-        newNum = false;
-    } else {
-        secondNum += event.target.textContent;
-        newNum = false;
-    }  
 }
 
 function calculate() {
@@ -103,4 +115,5 @@ function calculate() {
     firstNum = result;
     secondNum = "";
     operator = "";
+    opUsed = false;
 }
