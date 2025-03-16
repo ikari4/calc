@@ -31,12 +31,14 @@
 }
 
 .button {
+    display: flex;
     height: 60px;
     width: 60px;
+    justify-content: center;
+    align-items: center;
     font-size: 30px;
     background-color: black;
     color: orange;
-    text-align: center;
 }
 
 #enter {
