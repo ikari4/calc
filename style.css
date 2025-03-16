@@ -26,16 +26,12 @@
 
 .row {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
 }
 
 .button {
-    display: flex;
     height: 60px;
     width: 60px;
-    justify-content: center;
-    align-items: center;
     font-size: 30px;
     background-color: black;
     color: orange;
